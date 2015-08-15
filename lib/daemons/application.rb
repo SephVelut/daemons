@@ -272,7 +272,7 @@ module Daemons
       end
 
       unless options[:ontop]
-        @pid.pid = Daemonize.call_as_daemon(myproc, output_logfile, @group.app_name)
+        @pid.pid = Daemonize.call_as_daemon(myproc, output_logfile, @group.app_name, @options)
 
       else
         Daemonize.simulate(output_logfile)

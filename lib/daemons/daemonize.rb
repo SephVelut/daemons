@@ -38,7 +38,7 @@ module Daemonize
   module_function :simulate
 
   # Call a given block as a daemon
-  def call_as_daemon(block, logfile_name = nil, app_name = nil)
+  def call_as_daemon(block, logfile_name = nil, app_name = nil, options = nil)
     # we use a pipe to return the PID of the daemon
     rd, wr = IO.pipe
 
@@ -74,7 +74,9 @@ module Daemonize
       # Release old working directory
       Dir.chdir '/'
 
-      close_io
+      if !options[:open_io]
+        close_io
+      end
 
       redirect_io(logfile_name)
 
