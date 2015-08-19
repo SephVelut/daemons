@@ -113,7 +113,7 @@ module Daemons
           end
         end
 
-        fail RuntimeException.new('there is already one or more instance(s) of the program running') unless @applications.empty?
+        fail RuntimeError, 'there is already one or more instance(s) of the program running' unless @applications.empty?
       end
 
       app = Application.new(self, add_options)
